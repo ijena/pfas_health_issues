@@ -14,6 +14,8 @@ low_birth_weight_california_data = california_data.iloc[:, [
     low_birth_weight +3
 ]]
 low_birth_weight_california_data.columns = ["FIPS","County", "% Low Birth Weight", " Low Birth Weight National Z Score"]
+
+low_birth_weight_california_data['County'] = low_birth_weight_california_data['County'].str.strip().str.upper()
 low_birth_weight_california_data.to_csv("low_birth_weight_california_data.csv", index=False)
 
 
