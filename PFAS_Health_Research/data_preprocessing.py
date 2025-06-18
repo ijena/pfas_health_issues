@@ -46,3 +46,7 @@ chemical_columns = [
 
 aggregate_pfas_df = filtered_pfas_df.groupby(['gm_gis_county','gm_well_category'])[chemical_columns].mean().reset_index()
 aggregate_pfas_df.to_csv("california_aggregate_pfas_data.csv", index = False)
+municipal_pfas = aggregate_pfas_df[aggregate_pfas_df["gm_well_category"]=="MUNICIPAL"]
+
+merged_df = pd.merge(low_birth_weight_california_data, municipal_pfas, left_on="County", right_on = "gm_gis_county", how="inner")
+merged_df.to_csv("merged_california_county_pfas_low_birth_weight.csv", index = False)
